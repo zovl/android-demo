@@ -1,2 +1,3 @@
 include ':android-app-demo',
-        ':android-libraries-demo'
+        ':android-library-demo',
+        ':android-library-utils'
