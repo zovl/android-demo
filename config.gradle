@@ -1,4 +1,18 @@
 ext {
+    applicationIds = [
+            app                    : 'zovlzhongguanhua.demo.app',
+            library                : 'zovlzhongguanhua.demo.library',
+
+            utils                  : 'zovlzhongguanhua.demo.utils',
+
+            jacoco                 : 'zovlzhongguanhua.plugin.jacoco',
+            resguard               : 'zovlzhongguanhua.plugin.resguard',
+
+            retrofit_eventbus      : 'zovlzhongguanhua.library.okhttp.eventbus.sample',
+            retrofit_rxjava        : 'zovlzhongguanhua.library.okhttp.rxjava.sample',
+
+            collection             : 'zovlzhongguanhua.api.collection'
+    ]
     android = [
             compileSdkVersion = 25,
             buildToolsVersion = "25.0.2",
@@ -12,13 +26,34 @@ ext {
             constraint      : 'com.android.support.constraint:constraint-layout:1.0.0',
             recyclerview    : 'com.android.support:recyclerview-v7:25.3.1'
     ]
+    final OKHTTP_VERSION = '3.8.0'
+    final RXLIFECYCLE_VERSION = '2.0'
+    final RETROFIT_VERSION = '2.3.0'
+    final RXJAVA_VERSION = '2.0.1'
+    final GSON_VERSION = '2.8.1'
+    final FASTJSON_VERSION = '1.2.32'
+    final JUNIT_VERSION = '4.12'
+    final EVENTBUS_VERSION = '3.0.0'
+    final ESPRESSO_VERSION = '2.2.2'
     libraries = [
-            gsonV281        : 'com.google.code.gson:gson:2.8.1',
-            junit412        : 'junit:junit:4.12'
-    ]
-    applicationIds = [
-            app             : 'zovlzhongguanhua.demo.app',
-            library       : 'zovlzhongguanhua.demo.library',
-            utils           : 'zovlzhongguanhua.demo.utils'
+            junit                                   : "junit:junit:$JUNIT_VERSION",
+            test_runner                             : "android.support.test.runner.AndroidJUnitRunner",
+            espresso                                : "com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION",
+            espresso_contrib                        : "com.android.support.test.espresso:espresso-contrib:$ESPRESSO_VERSION",
+            okhttp3                                 : "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION",
+            okhttp3_logging                         : "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION",
+            rxjava2_rxandroid                       : "io.reactivex.rxjava2:rxandroid:$RXJAVA_VERSION",
+            rxjava2                                 : "io.reactivex.rxjava2:rxjava:$RXJAVA_VERSION",
+            retrofit2                               : "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION",
+            retrofit2_converters                    : "com.squareup.retrofit2:retrofit-converters:$RETROFIT_VERSION",
+            retrofit2_adapters                      : "com.squareup.retrofit2:retrofit-adapters:$RETROFIT_VERSION",
+            retrofit2_gson                          : "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION",
+            retrofit2_rxjava2                       : "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION",
+            rxlifecycle2                            : "com.trello.rxlifecycle2:rxlifecycle:$RXLIFECYCLE_VERSION",
+            rxlifecycle2_components                 : "com.trello.rxlifecycle2:rxlifecycle-components:$RXLIFECYCLE_VERSION",
+            rxlifecycle2_android                    : "com.trello.rxlifecycle2:rxlifecycle-android:$RXLIFECYCLE_VERSION",
+            gson                                    : "com.google.code.gson:gson:$GSON_VERSION",
+            fastjson                                : "com.alibaba:fastjson:$FASTJSON_VERSION",
+            eventbus                                : "org.greenrobot:eventbus:$EVENTBUS_VERSION"
     ]
 }

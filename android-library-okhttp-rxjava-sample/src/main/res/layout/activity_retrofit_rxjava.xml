@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="GET"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:onClick="doGet"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="POST"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:onClick="doPost"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="GET NEW URL"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:onClick="doGetNewUrl"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="POST NEW URL"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:onClick="doPostNewUrl"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="POST NEW URL BODY"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:onClick="doPostNewUrlBody"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="GET TAG"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:onClick="doGetTag"/>
+
+</LinearLayout>

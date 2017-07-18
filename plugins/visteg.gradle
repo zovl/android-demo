@@ -1,0 +1,22 @@
+apply plugin: 'cz.malohlava.visteg'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'cz.malohlava:visteg:1.0.0'
+    }
+}
+
+visteg {
+    enabled        = true
+    colouredNodes  = true
+    colouredEdges  = true
+    destination    = 'build/reports/visteg.dot'
+    exporter       = 'dot'
+    colorscheme    = 'spectral11'
+    nodeShape      = 'box'
+    startNodeShape = 'hexagon'
+    endNodeShape   = 'doubleoctagon'
+}

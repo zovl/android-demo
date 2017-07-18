@@ -1,3 +1,14 @@
-include ':android-app-demo',
-        ':android-library-demo',
-        ':android-library-utils'
+include ':android-template-app',
+        ':android-template-library',
+
+        ':android-demo-utils',
+
+        ':android-plugin-jacoco',
+        ':android-plugin-resguard',
+
+        // ':android-api-collection',
+
+        ':android-library-okhttp-eventbus',
+        ':android-library-okhttp-eventbus-sample',
+        ':android-library-okhttp-rxjava',
+        ':android-library-okhttp-rxjava-sample'

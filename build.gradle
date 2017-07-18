@@ -1,13 +1,37 @@
 apply from: "config.gradle"
 
+/** 可用的插件 */
+apply from: "/plugins/android-analytics.gradle"
+apply from: "/plugins/task-tree.gradle"
+apply from: "/plugins/visteg.gradle"
+
+/** 不可用的插件 */
+// apply from: "/plugins/android-run.gradle"
+
+/** 子项目插件 */
+// apply from: "../plugins/AndResGuard.gradle"
+// apply from: "../plugins/jacoco.gradle"
+
+// *************************************************************************************************
+
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
+
+        classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.3'
+        classpath "gradle.plugin.com.github.rchugunov:plugin:0.1.5"
+        classpath "gradle.plugin.com.dorongold.plugins:task-tree:1.3"
+        classpath 'cz.malohlava:visteg:1.0.0'
     }
 }
+
+// *************************************************************************************************
 
 allprojects {
     repositories {
@@ -15,6 +39,12 @@ allprojects {
     }
 }
 
+// *************************************************************************************************
+
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.4'
 }

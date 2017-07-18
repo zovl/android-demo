@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+apply plugin: 'jacoco'
+
+android {
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+    }
+    jacoco {
+        version "0.7.4.201502262128"
+    }
+}
+
+task jacocoTestReport(type:JacocoReport, dependsOn:"connectedAndroidTest") {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+    reports{
+        xml.enabled = false
+        html.enabled = true
+        csv.enabled = false
+    }
+    classDirectories = fileTree(
+            dir : "$buildDir/intermediates/classes/debug",
+            excludes : [
+                    '**/*Test.class',
+                    '**/R.class',
+                    '**/R$*.class',
+                    '**/BuildConfig.*',
+                    '**/Manifest*.*'
+            ]
+    )
+    def coverageSourceDirs = ['src/main/java']
+    additionalSourceDirs = files(coverageSourceDirs)
+    sourceDirectories = files(coverageSourceDirs)
+    additionalClassDirs = files(coverageSourceDirs)
+    executionData = files("$buildDir/outputs/code-coverage/connected/coverage.ec")
+}
