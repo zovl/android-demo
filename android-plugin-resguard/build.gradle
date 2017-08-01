@@ -49,7 +49,7 @@ dependencies {
     compile rootProject.ext.dependencies.constraint
 }
 
-task andresguardRelease(dependsOn: [":clean", ":android-library-resguard:assembleRelease"]) {
+task resguardReleaseCmd(dependsOn: [":clean", ":android-library-resguard:assembleRelease"]) {
     doLast {
         commandLine "cmd","/command/build_apk.bat"
     }

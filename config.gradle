@@ -10,8 +10,12 @@ ext {
 
             retrofit_eventbus      : 'zovlzhongguanhua.library.okhttp.eventbus.sample',
             retrofit_rxjava        : 'zovlzhongguanhua.library.okhttp.rxjava.sample',
+            systembar              : 'zovlzhongguanhua.library.systembar',
+            systembar              : 'zovlzhongguanhua.library.viewserver',
 
-            collection             : 'zovlzhongguanhua.api.collection'
+            collection             : 'zovlzhongguanhua.api.collection',
+            recylerview            : 'zovlzhongguanhua.api.recylerview',
+            dialog                 : 'zovlzhongguanhua.api.dialog'
     ]
     android = [
             compileSdkVersion = 25,

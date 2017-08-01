@@ -1,4 +1,4 @@
-package zovlzhongguanhua.plugin.resguard;
+package zovlzhongguanhua.api.collection;
 
 import android.os.Bundle;
 

@@ -6,9 +6,13 @@ include ':android-template-app',
         ':android-plugin-jacoco',
         ':android-plugin-resguard',
 
-        // ':android-api-collection',
+        ':android-api-collection',
+        ':android-api-recylerview',
+        ':android-api-dialog',
 
         ':android-library-okhttp-eventbus',
         ':android-library-okhttp-eventbus-sample',
         ':android-library-okhttp-rxjava',
-        ':android-library-okhttp-rxjava-sample'
+        ':android-library-okhttp-rxjava-sample',
+        ':android-library-systembar',
+        ':android-library-viewserver'
