@@ -26,21 +26,13 @@ class RequestRunnable implements Runnable {
 	
 	@Override
 	public void run() {
-		try {
-			if (requestObject.getType() == NetworkObject.Method.GET) {
-				responseObject = ok.doExecute(requestObject);
-			} else if (requestObject.getType() == NetworkObject.Method.POST) {
-				responseObject = ok.doExecute(requestObject);
-			} else if (requestObject.getType() == NetworkObject.Method.UPLOAD) {
-				// TODO: 2016/11/23 上传文件
-				responseObject = ok.doExecute(requestObject);
-			} else if (requestObject.getType() == NetworkObject.Method.DOWNLOAD) {
-				ok.doExecute(requestObject);
-			} else {
-				throw new NullPointerException("Error: method is not supported!");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (requestObject.getType() == NetworkManager.Method.GET ||
+				requestObject.getType() == NetworkManager.Method.POST ||
+				requestObject.getType() == NetworkManager.Method.UPLOAD ||
+				requestObject.getType() == NetworkManager.Method.DOWNLOAD) {
+			responseObject = ok.doExecute(requestObject);
+		} else {
+			throw new NullPointerException("Error: method is not supported!");
 		}
 		responseHandler = new ResponseHandler(responseObject);
 		responseHandler.handle();

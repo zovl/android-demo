@@ -10,7 +10,7 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        NetworkManager.getInstance().setmContext(this)
+        NetworkManager.getInstance().setContext(this)
                 .setDebug(true);
     }
 }

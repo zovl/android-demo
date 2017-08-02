@@ -54,7 +54,7 @@ class OkMethod {
 	/**
      * 执行网络任务
      */
-	public ResponseObject doExecute(RequestObject requestObject) throws Exception {
+	public ResponseObject doExecute(RequestObject requestObject) {
 		if (requestObject == null) {
 			throw new NullPointerException("Error: requestObject is null!");
 		}
@@ -66,7 +66,7 @@ class OkMethod {
 		if (url == null || url.length() == 0 || url.equals("null")) {
 			throw new NullPointerException("Error: url is null!");
 		}
-		if (type == NetworkObject.Method.DOWNLOAD && downloadFile == null) {
+		if (type == NetworkManager.Method.DOWNLOAD && downloadFile == null) {
 			throw new NullPointerException("Error: downloadFile is null!");
 		}
 		params = requestObject.getParams();
@@ -80,13 +80,13 @@ class OkMethod {
 		if (DEBUG) Log.d(TAG, "files: " + files);
 		responseObject = Util.newResponseObject(requestObject);
 
-		if (type == NetworkObject.Method.GET) {
+		if (type == NetworkManager.Method.GET) {
 			doGet();
-		} else if (type == NetworkObject.Method.POST) {
+		} else if (type == NetworkManager.Method.POST) {
 			doPost();
-		} else if (type == NetworkObject.Method.UPLOAD) {
+		} else if (type == NetworkManager.Method.UPLOAD) {
 			uploadFile();
-		}  else if (type == NetworkObject.Method.DOWNLOAD) {
+		}  else if (type == NetworkManager.Method.DOWNLOAD) {
 			downloadFile();
 		} else {
 			throw new NullPointerException("Error: request type is unsuppoeted!");

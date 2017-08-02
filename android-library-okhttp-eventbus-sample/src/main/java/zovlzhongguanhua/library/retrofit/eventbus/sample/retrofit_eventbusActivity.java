@@ -3,6 +3,7 @@ package zovlzhongguanhua.library.retrofit.eventbus.sample;
 import android.os.Bundle;
 import android.view.View;
 
+import com.aomygod.retrofit.eventbus.NetworkManager;
 import com.aomygod.retrofit.eventbus.NetworkObject;
 import com.aomygod.retrofit.eventbus.RequestObject;
 
@@ -30,30 +31,29 @@ public class retrofit_eventbusActivity extends BaseActivity {
 
     public void doGet(View v) {
 
-        NetworkObject helper = new NetworkObject();
         RequestObject requestObject = new RequestObject();
-        requestObject.setType(NetworkObject.Method.GET);
+        requestObject.setType(NetworkManager.Method.GET);
         requestObject.setUrl("http://httpbin.org/get");
         Map<String, Object> params = new HashMap<>();
         params.put("name", "Tom");
         params.put("password", "123456");
         requestObject.setParams(params);
         requestObject.setEntity(new GetBean());
-        helper.doService(requestObject);
+        NetworkManager.getInstance().doService(requestObject);
     }
 
     public void doPost(View v) {
 
         NetworkObject helper = new NetworkObject();
         RequestObject requestObject = new RequestObject();
-        requestObject.setType(NetworkObject.Method.POST);
+        requestObject.setType(NetworkManager.Method.POST);
         requestObject.setUrl("http://httpbin.org/post");
         Map<String, Object> params = new HashMap<>();
         params.put("name", "Tom");
         params.put("password", "123456");
         requestObject.setParams(params);
         requestObject.setEntity(new PostBean());
-        helper.doService(requestObject);
+        NetworkManager.getInstance().doService(requestObject);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
