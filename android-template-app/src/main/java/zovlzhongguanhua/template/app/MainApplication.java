@@ -1,4 +1,4 @@
-package zovlzhongguanhua.demo.app;
+package zovlzhongguanhua.template.app;
 
 import android.app.Application;
 

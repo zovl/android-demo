@@ -1,4 +1,4 @@
-package zovlzhongguanhua.demo.app;
+package zovlzhongguanhua.template.app;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

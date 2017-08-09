@@ -1,7 +1,7 @@
 ext {
     applicationIds = [
-            app                    : 'zovlzhongguanhua.demo.app',
-            library                : 'zovlzhongguanhua.demo.library',
+            app                    : 'zovlzhongguanhua.template.app',
+            library                : 'zovlzhongguanhua.template.library',
 
             utils                  : 'zovlzhongguanhua.demo.utils',
 
