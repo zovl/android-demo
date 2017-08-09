@@ -6,23 +6,30 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Html;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @TargetApi(17)
 public class CanvasConversionActivity extends BaseActivity {
 
-    private ImageView imageView;
+    private SurfaceView surfaceView;
+    private SurfaceHolder surfaceHolder;
     private TextView textView;
     private SeekBar translateXView, translateYView;
 
@@ -31,10 +38,25 @@ public class CanvasConversionActivity extends BaseActivity {
     private DisplayMetrics metrics;
     private Bitmap bitmap;
     private Bitmap.Config config;
-    private Canvas canvas;
-    private Paint paint;
-    private int translateX;
-    private int translateY;
+    private AtomicInteger translateX = new AtomicInteger(0);
+    private AtomicInteger translateY = new AtomicInteger(0);
+
+    private AtomicBoolean flag = new AtomicBoolean(true);
+    private Thread thread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            while (flag.get()) {
+                drawBitmap();
+            }
+        }
+    });
+    private Handler handler = new Handler(Looper.getMainLooper());
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        flag.set(false);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,27 +72,61 @@ public class CanvasConversionActivity extends BaseActivity {
         metrics = new DisplayMetrics();
         display.getMetrics(metrics);
 
-        translateX = 0;
-        translateY = 0;
-
         config = Bitmap.Config.ARGB_8888;
         InputStream in = resources.openRawResource(R.raw.image_02);
         bitmap = BitmapFactory.decodeStream(in);
-        canvas = new Canvas();
-        paint = new Paint();
 
-        imageView = (ImageView) findViewById(R.id.imageView);
+        surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
         textView = (TextView) findViewById(R.id.textView);
         translateXView = (SeekBar) findViewById(R.id.translateXView);
         translateYView = (SeekBar) findViewById(R.id.translateYView);
 
-        translateXView.setMax(metrics.widthPixels);
-        translateXView.setProgress(0);
+        surfaceView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+
+            }
+        });
+
+        surfaceHolder = surfaceView.getHolder();
+        surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        surfaceHolder.addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                surfaceHolder = holder;
+                resetController();
+                thread.start();
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+                surfaceHolder = holder;
+                resetController();
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+                surfaceHolder = holder;
+            }
+        });
+    }
+
+    private void resetController() {
+        int w0 = surfaceView.getWidth();
+        int h0 = surfaceView.getHeight();
+        int w1 = bitmap.getWidth();
+        int h1 = bitmap.getHeight();
+        translateXView.setMax(w0 - w1);
+        translateXView.setProgress(translateX.get() + (w0 - w1)/2);
+        translateYView.setMax(h0 - h1);
+        translateXView.setProgress(translateY.get() + (h0 - h1)/2);
+
         translateXView.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                translateX = progress;
-                drawBitmap();
+                int w0 = surfaceView.getWidth();
+                int w1 = bitmap.getWidth();
+                translateX.set(progress - (w0 - w1)/2);
             }
 
             @Override
@@ -80,13 +136,12 @@ public class CanvasConversionActivity extends BaseActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        translateYView.setMax(metrics.heightPixels);
-        translateYView.setProgress(0);
         translateYView.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                translateY = progress;
-                drawBitmap();
+                int h0 = surfaceView.getHeight();
+                int h1 = bitmap.getHeight();
+                translateY.set(progress - (h0 - h1)/2);
             }
 
             @Override
@@ -95,19 +150,28 @@ public class CanvasConversionActivity extends BaseActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-
-        imageView.setImageBitmap(bitmap);
-        drawBitmap();
     }
 
     private void drawBitmap() {
-        canvas.save();
-        canvas.translate(translateX, translateY);
-        canvas.drawBitmap(bitmap, 0, 0, paint);
-        canvas.restore();
-
-        imageView.invalidate();
-        showParams();
+        if (surfaceHolder == null) return;
+        int w0 = surfaceView.getWidth();
+        int h0 = surfaceView.getHeight();
+        int w1 = bitmap.getWidth();
+        int h1 = bitmap.getHeight();
+        Canvas canvas = surfaceHolder.lockCanvas();
+        if (canvas == null) return;
+        canvas.drawColor(0, PorterDuff.Mode.CLEAR);
+        canvas.translate(translateX.get() + (w0 - w1)/2, translateY.get() + (h0 - h1)/2);
+        canvas.drawBitmap(bitmap, 0, 0, null);
+        if (surfaceHolder != null && canvas != null) {
+            surfaceHolder.unlockCanvasAndPost(canvas);
+        }
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                showParams();
+            }
+        });
     }
 
     private void showParams() {
