@@ -38,11 +38,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"/>
 
-            <!--平移 X-->
+            <!--旋转-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
@@ -50,8 +49,34 @@
                 android:paddingBottom="2dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="rotate: "
+                    android:textColor="#ffffff"
+                    android:textSize="8sp"/>
+
+                <SeekBar
+                    android:id="@+id/rotateView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+            </LinearLayout>
+
+            <!--平移 X-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="translate X: "
                     android:textColor="#ffffff"
                     android:textSize="8sp"/>
@@ -67,7 +92,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
@@ -75,14 +99,115 @@
                 android:paddingBottom="2dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="translate Y: "
                     android:textColor="#ffffff"
                     android:textSize="8sp"/>
 
                 <SeekBar
                     android:id="@+id/translateYView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+            </LinearLayout>
+
+            <!--伸缩 X-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="scale X: "
+                    android:textColor="#ffffff"
+                    android:textSize="8sp"/>
+
+                <SeekBar
+                    android:id="@+id/scaleXView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+            </LinearLayout>
+
+            <!--伸缩 Y-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="scale Y: "
+                    android:textColor="#ffffff"
+                    android:textSize="8sp"/>
+
+                <SeekBar
+                    android:id="@+id/scaleYView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+            </LinearLayout>
+
+            <!--错切 X-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="skew X: "
+                    android:textColor="#ffffff"
+                    android:textSize="8sp"/>
+
+                <SeekBar
+                    android:id="@+id/skewXView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+            </LinearLayout>
+
+            <!--错切 Y-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="skew Y: "
+                    android:textColor="#ffffff"
+                    android:textSize="8sp"/>
+
+                <SeekBar
+                    android:id="@+id/skewYView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"/>
