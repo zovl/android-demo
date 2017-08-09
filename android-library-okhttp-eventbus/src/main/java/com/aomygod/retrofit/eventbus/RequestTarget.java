@@ -14,16 +14,10 @@ public class RequestTarget {
     public Object postEntity(RequestObject request) {
         OkMethod ok = new OkMethod();
         ResponseObject response = null;
-        try {
-            if (request.getType() == NetworkObject.Method.GET) {
-                response = ok.doExecute(request);
-            } else if (request.getType() == NetworkObject.Method.POST) {
-                response = ok.doExecute(request);
-            } else if (request.getType() == NetworkObject.Method.UPLOAD) {
-                response = ok.doExecute(request);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (request.getType() == NetworkManager.Method.GET ||
+                request.getType() == NetworkManager.Method.POST ||
+                request.getType() == NetworkManager.Method.UPLOAD) {
+            response = ok.doExecute(request);
         }
         if (response != null) {
             return response.getResultBean();

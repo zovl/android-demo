@@ -14,11 +14,11 @@ public class BadTokenExceptionActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // exception();
-        solution();
+        // except();
+        solute();
     }
 
-    private void exception() {
+    private void except() {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -34,7 +34,7 @@ public class BadTokenExceptionActivity extends BaseActivity {
         finish();
     }
 
-    private void solution() {
+    private void solute() {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

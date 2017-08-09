@@ -9,10 +9,13 @@ include ':android-template-app',
         ':android-api-collection',
         ':android-api-recylerview',
         ':android-api-dialog',
+        ':android-api-application',
+        ':android-api-image',
 
         ':android-library-okhttp-eventbus',
         ':android-library-okhttp-eventbus-sample',
         ':android-library-okhttp-rxjava',
         ':android-library-okhttp-rxjava-sample',
         ':android-library-systembar',
-        ':android-library-viewserver'
+        ':android-library-viewserver',
+        ':android-library-androidasynchttp'

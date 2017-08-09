@@ -59,8 +59,7 @@ public class RequestService extends Service {
      */
     private void request(RequestObject event) {
         if (event != null) {
-            NetworkObject helper = new NetworkObject();
-            helper.doExecutor(event, null);
+            NetworkManager.getInstance().doExecutor(event, null);
         }
     }
 
